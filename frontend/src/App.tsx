@@ -1,7 +1,29 @@
 import "./App.css";
+import FeedbackPinApp from "./components/FeedbackPinApp";
 
+/* 
+ * Main application component that serves as the entry point
+ * Renders the demo content and the FeedbackPinApp component
+ */
 function App() {
-    return <div>Hello world</div>;
+    return (
+        <div className="app">
+            <header className="app-header">
+                <h1>Feedback Pin Demo</h1>
+                <p>Click anywhere on the page to add feedback when feedback mode is enabled</p>
+            </header>
+            
+            <main className="app-content">
+                <div className="demo-content">
+                    <h2>Demo Content</h2>
+                    <p>This is a demo page to showcase the feedback pin functionality.</p>
+                    <p>Enable feedback mode using the button in the corner, then click anywhere to add feedback.</p>
+                </div>
+            </main>
+            
+            <FeedbackPinApp initialActive={false} initialShowPins={true}/>
+        </div>
+    );
 }
 
 export default App;
