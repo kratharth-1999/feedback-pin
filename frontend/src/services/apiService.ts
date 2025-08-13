@@ -64,7 +64,7 @@ export const apiService = {
     deletePin: async (id: string): Promise<void> => {
         try {
             const response = await fetch(
-                `${API_BASE_URL}/pin?id=${encodeURIComponent(id)}`,
+                `${API_BASE_URL}/pins?id=${encodeURIComponent(id)}`,
                 {
                     method: "DELETE",
                 }
@@ -87,7 +87,7 @@ export const apiService = {
     deletePinsByUrl: async (url: string, emailId: string): Promise<void> => {
         try {
             const response = await fetch(
-                `${API_BASE_URL}/pin?url=${encodeURIComponent(
+                `${API_BASE_URL}/pins?url=${encodeURIComponent(
                     url
                 )}&emailId=${encodeURIComponent(emailId)}`,
                 {

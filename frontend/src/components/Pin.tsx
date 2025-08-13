@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import type { PinProps } from "../types";
 
-/* 
+/*
  * Component that renders a visual pin marker at a specific position
  * Handles position adjustments when the page scrolls to maintain pin position
  */
 const Pin = React.memo(({ pin, onClick }: PinProps) => {
-    const [scrollPosition, setScrollPosition] = useState({ 
-        scrollX: window.scrollX, 
-        scrollY: window.scrollY 
+    const [scrollPosition, setScrollPosition] = useState({
+        scrollX: window.scrollX,
+        scrollY: window.scrollY,
     });
 
     /* Update scroll position when scrolling or resizing */
@@ -16,19 +16,19 @@ const Pin = React.memo(({ pin, onClick }: PinProps) => {
         const handleScrollOrResize = () => {
             setScrollPosition({
                 scrollX: window.scrollX,
-                scrollY: window.scrollY
+                scrollY: window.scrollY,
             });
         };
 
-        window.addEventListener('scroll', handleScrollOrResize);
-        window.addEventListener('resize', handleScrollOrResize);
-        
+        window.addEventListener("scroll", handleScrollOrResize);
+        window.addEventListener("resize", handleScrollOrResize);
+
         /* Initial call to set correct values */
         handleScrollOrResize();
-        
+
         return () => {
-            window.removeEventListener('scroll', handleScrollOrResize);
-            window.removeEventListener('resize', handleScrollOrResize);
+            window.removeEventListener("scroll", handleScrollOrResize);
+            window.removeEventListener("resize", handleScrollOrResize);
         };
     }, []);
 
