@@ -9,6 +9,32 @@ export type Position = {
   y: number;
 };
 
+/* Props for the LoadingOverlay component */
+export interface LoadingOverlayProps {
+  isLoading: boolean;
+}
+
+/* State for API operations */
+export interface ApiState {
+  isLoading: boolean;
+  error: Error | null;
+  successMessage: string | null;
+}
+
+/* State for fetch operations */
+export interface FetchState<T> {
+  data: T | null;
+  isLoading: boolean;
+  error: Error | null;
+}
+
+/* Options for fetch operations */
+export interface FetchOptions {
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  headers?: Record<string, string>;
+  body?: any;
+}
+
 /* Pin data structure representing user feedback attached to a specific position on a page */
 export interface PinType {
     id: string;
@@ -17,21 +43,25 @@ export interface PinType {
     path: string;
     feedback: string;
     createdAt: number;
+    emailId: string;
 }
 
 /* Context for managing pins across the application */
 export interface PinsContextType {
   pins: PinType[];
   isLoading: boolean;
+  emailId: string;
   addPin: (pin: PinType) => void;
   removePin: (pinId: string) => void;
   updatePin: (pin: PinType) => void;
   getPinsByPath: (path: string) => PinType[];
+  removeAllPinsByPath: (path: string) => void;
 }
 
 /* Props for the PinsProvider component */
 export interface PinsProviderProps {
   children: ReactNode;
+  emailId: string;
 }
 
 /* Props for the Pin component */
@@ -58,6 +88,7 @@ export interface PinDetailsPopupProps {
 export interface FeedbackPinAppProps {
   initialActive?: boolean;
   initialShowPins?: boolean;
+  emailId: string;
 }
 
 /* Props for the FeedbackForm component */

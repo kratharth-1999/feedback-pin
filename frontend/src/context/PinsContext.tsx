@@ -8,8 +8,8 @@ import type { PinsContextType, PinsProviderProps } from "../types";
  */
 const PinsContext = createContext<PinsContextType | undefined>(undefined);
 
-export const PinsProvider: React.FC<PinsProviderProps> = ({ children }) => {
-  const pinsData = usePins();
+export const PinsProvider: React.FC<PinsProviderProps> = ({ children, emailId }) => {
+  const pinsData = usePins(emailId);
   
   return (
     <PinsContext.Provider value={pinsData}>

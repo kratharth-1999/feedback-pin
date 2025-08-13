@@ -1,17 +1,20 @@
 import React, { useState, useCallback } from "react";
 import Overlay from "./Overlay";
+import LoadingOverlay from "./LoadingOverlay";
+import { PinsProvider } from "../context/PinsContext";
 import { usePinsContext } from "../context/PinsContext";
 import type { FeedbackPinAppProps } from "../types";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /* 
- * Main component for the Feedback Pin application
- * Provides controls for feedback functionality and pin visibility
+ * Inner component that uses the PinsContext
  */
-const FeedbackPinApp: React.FC<FeedbackPinAppProps> = ({ 
-  initialActive = false,
-  initialShowPins = true
-}) => {
-  const { removePin, pins } = usePinsContext();
+const FeedbackPinContent: React.FC<{
+  initialActive: boolean;
+  initialShowPins: boolean;
+}> = ({ initialActive, initialShowPins }) => {
+  const {pins, removeAllPinsByPath, isLoading } = usePinsContext();
   const [isActive, setIsActive] = useState(initialActive);
   const [showPins, setShowPins] = useState(initialShowPins);
 
@@ -33,12 +36,12 @@ const FeedbackPinApp: React.FC<FeedbackPinAppProps> = ({
     if (pathPins.length > 0) {
       const confirmMessage = `Are you sure you want to remove all ${pathPins.length} pins from this page?`;
       if (window.confirm(confirmMessage)) {
-        pathPins.forEach(pin => removePin(pin.id));
+        removeAllPinsByPath(currentPath);
       }
     } else {
       alert("No pins to remove on this page.");
     }
-  }, [pins, removePin]);
+  }, [pins, removeAllPinsByPath]);
 
   return (
     <div className="feedback-pin-app">
@@ -68,8 +71,40 @@ const FeedbackPinApp: React.FC<FeedbackPinAppProps> = ({
         </button>
       </div>
       
+      <LoadingOverlay isLoading={isLoading} />
       <Overlay isActive={isActive} showPins={showPins} />
+      <ToastContainer 
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
+  );
+};
+
+/* 
+ * Main component for the Feedback Pin application
+ * Provides controls for feedback functionality and pin visibility
+ * Wraps content with PinsProvider to isolate context
+ */
+const FeedbackPinApp: React.FC<FeedbackPinAppProps> = ({ 
+  initialActive = false,
+  initialShowPins = true,
+  emailId
+}) => {
+  return (
+    <PinsProvider emailId={emailId}>
+      <FeedbackPinContent 
+        initialActive={initialActive}
+        initialShowPins={initialShowPins}
+      />
+    </PinsProvider>
   );
 };
 

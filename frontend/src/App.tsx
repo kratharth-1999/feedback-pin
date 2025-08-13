@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import FeedbackPinApp from "./components/FeedbackPinApp";
 
 /* 
@@ -6,6 +6,9 @@ import FeedbackPinApp from "./components/FeedbackPinApp";
  * Renders the demo content and the FeedbackPinApp component
  */
 function App() {
+    /* In a real application, this would come from user authentication */
+    const userEmailId = 'demo@example.com';
+    
     return (
         <div className="app">
             <header className="app-header">
@@ -21,7 +24,11 @@ function App() {
                 </div>
             </main>
             
-            <FeedbackPinApp initialActive={false} initialShowPins={true}/>
+            <FeedbackPinApp 
+                initialActive={false} 
+                initialShowPins={true}
+                emailId={userEmailId}
+            />
         </div>
     );
 }

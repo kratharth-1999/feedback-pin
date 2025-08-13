@@ -10,7 +10,7 @@ import { usePinsContext } from "../context/PinsContext";
  * Manages the interaction between pins, feedback forms, and pin details
  */
 const Overlay: React.FC<OverlayProps> = ({ isActive, showPins }) => {
-  const { pins, addPin, removePin, updatePin } = usePinsContext();
+  const { pins, addPin, removePin, updatePin, emailId } = usePinsContext();
   const [clickPosition, setClickPosition] = useState<Position | null>(null);
   const [selectedPin, setSelectedPin] = useState<PinType | null>(null);
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
@@ -46,6 +46,7 @@ const Overlay: React.FC<OverlayProps> = ({ isActive, showPins }) => {
         path: window.location.href,
         feedback,
         createdAt: Date.now(),
+        emailId,
       };
       
       addPin(newPin);
