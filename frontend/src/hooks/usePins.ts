@@ -11,31 +11,38 @@ export function usePins(emailId: string) {
     const [pins, setPins] = useState<PinType[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    /* Load pins on initial render */
+    const loadPins = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const currentUrl = window.location.href;
+            const urlPins = await apiService.getPinsByUrl(currentUrl, emailId);
+            setPins(urlPins);
+        } catch (error) {
+            const errorMessage =
+                error instanceof Error ? error.message : "Error loading pins";
+            toast.error(errorMessage);
+            console.error("Error loading pins:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [emailId]);
+
+    /* Load pins on initial render and when tab becomes visible */
     useEffect(() => {
-        const loadPins = async () => {
-            setIsLoading(true);
-            try {
-                const currentUrl = window.location.href;
-                const urlPins = await apiService.getPinsByUrl(
-                    currentUrl,
-                    emailId
-                );
-                setPins(urlPins);
-            } catch (error) {
-                const errorMessage =
-                    error instanceof Error
-                        ? error.message
-                        : "Error loading pins";
-                toast.error(errorMessage);
-                console.error("Error loading pins:", error);
-            } finally {
-                setIsLoading(false);
+        loadPins();
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "visible") {
+                loadPins();
             }
         };
-
-        loadPins();
-    }, [emailId]);
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+        return () => {
+            document.removeEventListener(
+                "visibilitychange",
+                handleVisibilityChange
+            );
+        };
+    }, [loadPins]);
 
     /* Add a new pin */
     const addPin = useCallback(
@@ -145,5 +152,6 @@ export function usePins(emailId: string) {
         updatePin,
         getPinsByPath,
         removeAllPinsByPath,
+        loadPins,
     };
 }
