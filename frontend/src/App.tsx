@@ -1,9 +1,9 @@
 import "./styles/App.css";
-import FeedbackPinApp from "./components/FeedbackPinApp";
+import FeedbackPin from "./components/FeedbackPin";
 
 /*
  * Main application component that serves as the entry point
- * Renders the demo content and the FeedbackPinApp component
+ * Renders the demo content and the FeedbackPin component
  */
 function App() {
     /* In a real application, this would come from user authentication */
@@ -33,7 +33,7 @@ function App() {
                 </div>
             </main>
 
-            <FeedbackPinApp
+            <FeedbackPin
                 initialActive={false}
                 initialShowPins={true}
                 emailId={userEmailId}

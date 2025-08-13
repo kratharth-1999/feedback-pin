@@ -101,7 +101,7 @@ const FeedbackPinContent: React.FC<{
  * Provides controls for feedback functionality and pin visibility
  * Wraps content with PinsProvider to isolate context
  */
-const FeedbackPinApp: React.FC<FeedbackPinAppProps> = ({
+const FeedbackPin: React.FC<FeedbackPinAppProps> = ({
     initialActive = false,
     initialShowPins = true,
     emailId,
@@ -116,4 +116,4 @@ const FeedbackPinApp: React.FC<FeedbackPinAppProps> = ({
     );
 };
 
-export default React.memo(FeedbackPinApp);
+export default React.memo(FeedbackPin);
