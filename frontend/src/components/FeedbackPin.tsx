@@ -13,10 +13,12 @@ import "react-toastify/dist/ReactToastify.css";
 const FeedbackPinContent: React.FC<{
     initialActive: boolean;
     initialShowPins: boolean;
-}> = ({ initialActive, initialShowPins }) => {
+    initialShowControls: boolean;
+}> = ({ initialActive, initialShowPins, initialShowControls }) => {
     const { pins, removeAllPinsByPath, isLoading } = usePinsContext();
     const [isActive, setIsActive] = useState(initialActive);
     const [showPins, setShowPins] = useState(initialShowPins);
+    const [showControls, setShowControls] = useState(initialShowControls);
 
     /* Toggle feedback mode (ability to add new pins) */
     const toggleActive = useCallback(() => {
@@ -26,6 +28,11 @@ const FeedbackPinContent: React.FC<{
     /* Toggle pin visibility */
     const togglePinsVisibility = useCallback(() => {
         setShowPins((prev) => !prev);
+    }, []);
+
+    /* Toggle controls visibility */
+    const toggleControlsVisibility = useCallback(() => {
+        setShowControls((prev) => !prev);
     }, []);
 
     /* Remove all pins from the current path with confirmation */
@@ -45,39 +52,50 @@ const FeedbackPinContent: React.FC<{
 
     return (
         <div className="feedback-pin-app">
-            <div className="feedback-controls">
-                <button
-                    className={`feedback-control-btn ${
-                        isActive ? "active" : ""
-                    }`}
-                    onClick={toggleActive}
-                    title={
-                        isActive
-                            ? "Disable Feedback Mode"
-                            : "Enable Feedback Mode"
-                    }
-                >
-                    {isActive ? "Disable Feedback" : "Enable Feedback"}
-                </button>
+            <button
+                className={`feedback-control-btn feedback-pin-main-btn ${
+                    !showControls ? "collapsed" : ""
+                }`}
+                onClick={toggleControlsVisibility}
+                title={showControls ? "Hide Controls" : "Show Controls"}
+            >
+                {showControls && "Hide Controls"}
+            </button>
+            {showControls && (
+                <div className="feedback-controls">
+                    <button
+                        className={`feedback-control-btn ${
+                            isActive ? "active" : ""
+                        }`}
+                        onClick={toggleActive}
+                        title={
+                            isActive
+                                ? "Disable Feedback Mode"
+                                : "Enable Feedback Mode"
+                        }
+                    >
+                        {isActive ? "Disable Feedback" : "Enable Feedback"}
+                    </button>
 
-                <button
-                    className={`feedback-control-btn ${
-                        showPins ? "active" : ""
-                    }`}
-                    onClick={togglePinsVisibility}
-                    title={showPins ? "Hide Pins" : "Show Pins"}
-                >
-                    {showPins ? "Hide Pins" : "Show Pins"}
-                </button>
+                    <button
+                        className={`feedback-control-btn ${
+                            showPins ? "active" : ""
+                        }`}
+                        onClick={togglePinsVisibility}
+                        title={showPins ? "Hide Pins" : "Show Pins"}
+                    >
+                        {showPins ? "Hide Pins" : "Show Pins"}
+                    </button>
 
-                <button
-                    className="feedback-control-btn danger"
-                    onClick={removeAllPins}
-                    title="Remove All Pins"
-                >
-                    Remove All Pins
-                </button>
-            </div>
+                    <button
+                        className="feedback-control-btn danger"
+                        onClick={removeAllPins}
+                        title="Remove All Pins"
+                    >
+                        Remove All Pins
+                    </button>
+                </div>
+            )}
 
             <LoadingOverlay isLoading={isLoading} />
             <Overlay isActive={isActive} showPins={showPins} />
@@ -104,6 +122,7 @@ const FeedbackPinContent: React.FC<{
 const FeedbackPin: React.FC<FeedbackPinAppProps> = ({
     initialActive = false,
     initialShowPins = true,
+    initialShowControls = true,
     emailId,
 }) => {
     return (
@@ -111,6 +130,7 @@ const FeedbackPin: React.FC<FeedbackPinAppProps> = ({
             <FeedbackPinContent
                 initialActive={initialActive}
                 initialShowPins={initialShowPins}
+                initialShowControls={initialShowControls}
             />
         </PinsProvider>
     );

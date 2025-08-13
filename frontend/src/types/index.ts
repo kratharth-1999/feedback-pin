@@ -88,6 +88,7 @@ export interface PinDetailsPopupProps {
 export interface FeedbackPinAppProps {
     initialActive?: boolean;
     initialShowPins?: boolean;
+    initialShowControls?: boolean;
     emailId: string;
 }
 

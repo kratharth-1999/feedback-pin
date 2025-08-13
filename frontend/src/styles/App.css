@@ -1,258 +1,275 @@
 .app {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .app-header {
-  margin-bottom: 40px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
 }
 
 .app-content {
-  min-height: 60vh;
+    min-height: 60vh;
 }
 
 .demo-content {
-  background-color: #f9f9f9;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .feedback-pin-app {
-  position: relative;
+    position: relative;
 }
 
 .feedback-controls {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
 }
 
 .feedback-control-btn {
-  padding: 10px 15px;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-  white-space: nowrap;
+    padding: 10px 15px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    white-space: nowrap;
 }
 
 .feedback-control-btn:hover {
-  background-color: #3a7bc8;
+    background-color: #3a7bc8;
+}
+
+.feedback-pin-main-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.feedback-pin-main-btn.collapsed {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-map-pin'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'%3E%3C/path%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C/circle%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .feedback-control-btn.active {
-  background-color: #e24a4a;
+    background-color: #e24a4a;
 }
 
 .feedback-control-btn.active:hover {
-  background-color: #c83a3a;
+    background-color: #c83a3a;
 }
 
 .feedback-control-btn.danger {
-  background-color: #e24a4a;
+    background-color: #e24a4a;
 }
 
 .feedback-control-btn.danger:hover {
-  background-color: #c83a3a;
+    background-color: #c83a3a;
 }
 
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  pointer-events: all;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    pointer-events: all;
 }
 
 .pin {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background-color: #e24a4a;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 0 0 2px white, 0 2px 5px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s, box-shadow 0.2s;
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: #e24a4a;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 0 0 2px white, 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .pin:hover {
-  transform: translate(-50%, -50%) scale(1.2);
-  box-shadow: 0 0 0 2px white, 0 3px 8px rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 0 0 2px white, 0 3px 8px rgba(0, 0, 0, 0.5);
 }
 
 .potential-pin {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background-color: #4a90e2;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  box-shadow: 0 0 0 2px white, 0 2px 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    box-shadow: 0 0 0 2px white, 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .feedback-form {
-  position: fixed;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 15px;
-  width: 300px;
-  z-index: 1001;
+    position: fixed;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    width: 300px;
+    z-index: 1001;
 }
 
 .feedback-form form {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .feedback-form h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
 }
 
 .feedback-form textarea {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  resize: vertical;
-  font-family: inherit;
-  margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 10px;
 }
 
 .form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .form-actions button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .form-actions button[type="button"] {
-  background-color: #f1f1f1;
-  color: #333;
+    background-color: #f1f1f1;
+    color: #333;
 }
 
 .form-actions button[type="submit"] {
-  background-color: #4a90e2;
-  color: white;
+    background-color: #4a90e2;
+    color: white;
 }
 
 .form-actions button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .pin-details {
-  position: fixed;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 15px;
-  width: 300px;
-  z-index: 1001;
+    position: fixed;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    width: 300px;
+    z-index: 1001;
 }
 
 .pin-details-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .pin-details-header h3 {
-  margin: 0;
-  color: #333;
+    margin: 0;
+    color: #333;
 }
 
 .close-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #999;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
 }
 
 .pin-details-content {
-  margin-bottom: 15px;
-  display:flex;
-  flex-direction: column;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .feedback-text {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  white-space: pre-wrap;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
 }
 
 .feedback-edit-textarea {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  resize: vertical;
-  font-family: inherit;
-  background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+    background-color: #fff;
 }
 
 .timestamp {
-  font-size: 12px;
-  color: #999;
+    font-size: 12px;
+    color: #999;
 }
 
 .pin-details-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .pin-details-actions button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #4a90e2;
-  color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4a90e2;
+    color: white;
 }
 
 .pin-details-actions button:first-child {
-  background-color: #f1f1f1;
-  color: #333;
+    background-color: #f1f1f1;
+    color: #333;
 }
 
 .pin-details-actions button:last-child {
-  background-color: #e24a4a;
-  color: white;
+    background-color: #e24a4a;
+    color: white;
 }
 
 .pin-details-actions button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
