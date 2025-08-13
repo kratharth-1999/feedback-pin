@@ -37,6 +37,7 @@ function App() {
                 initialActive={false}
                 initialShowPins={true}
                 emailId={userEmailId}
+                initialShowControls={true}
             />
         </div>
     );
