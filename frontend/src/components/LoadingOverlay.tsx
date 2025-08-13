@@ -14,7 +14,7 @@ const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ isLoading }) => {
         <div className="loading-overlay">
             <div className="loading-container">
                 <ClipLoader color="#3498db" size={50} />
-                <p className="loading-text">Loading...</p>
+                <p className="loading-text">Saving changes...</p>
             </div>
         </div>
     );
