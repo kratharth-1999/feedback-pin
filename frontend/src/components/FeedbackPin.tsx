@@ -125,6 +125,13 @@ const FeedbackPin: React.FC<FeedbackPinAppProps> = ({
     initialShowControls = true,
     emailId,
 }) => {
+    /*Validate that emailId is provided*/
+    if (!emailId) {
+        throw new Error(
+            "FeedbackPin: 'emailId' prop is required. Please provide a valid email ID to use the FeedbackPin component."
+        );
+    }
+
     return (
         <PinsProvider emailId={emailId}>
             <FeedbackPinContent
