@@ -77,18 +77,18 @@ const Overlay: React.FC<OverlayProps> = ({ isActive, showPins }) => {
         }
     }, [selectedPin, removePin]);
 
-    const handlePinUpdate = useCallback(
-        (updatedPin: PinType) => {
-            updatePin(updatedPin);
-            setSelectedPin(updatedPin);
-        },
-        [updatePin]
-    );
-
     const handlePinDetailsClose = useCallback(() => {
         setShowPinDetails(false);
         setSelectedPin(null);
     }, []);
+
+    const handlePinUpdate = useCallback(
+        (updatedPin: PinType) => {
+            updatePin(updatedPin);
+            handlePinDetailsClose();
+        },
+        [updatePin, handlePinDetailsClose]
+    );
 
     /* Close popups when clicking outside */
     useEffect(() => {
