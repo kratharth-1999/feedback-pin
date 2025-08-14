@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      include: ['src'],
+      include: ['src/**/*'],
+      exclude: ['src/**/*.test.*', 'src/**/*.spec.*'],
       insertTypesEntry: true,
       outDir: 'dist'
     })
@@ -26,11 +27,15 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM'
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'index.css';
+          return assetInfo.name || 'asset';
         }
       }
     },
     sourcemap: true,
-    // Ensure CSS is included in the build
-    cssCodeSplit: true
+    // Ensure CSS is bundled as a single file
+    cssCodeSplit: false
   }
 })

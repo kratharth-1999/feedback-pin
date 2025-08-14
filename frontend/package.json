@@ -11,7 +11,8 @@
   "types": "src/index.d.ts",
   "files": [
     "dist",
-    "src/index.d.ts"
+    "src/index.d.ts",
+    "src/types"
   ],
   "scripts": {
     "dev": "vite",

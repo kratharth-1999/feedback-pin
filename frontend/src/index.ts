@@ -1,13 +1,23 @@
 // Main entry point for the package
 export { default as FeedbackPin } from './components/FeedbackPin';
+
+// Export all types
 export type { 
-  FeedbackPinAppProps,
-  PinType,
   Position,
+  LoadingOverlayProps,
+  ApiState,
+  FetchState,
+  FetchOptions,
+  PinType,
   PinsContextType,
-  PinsProviderProps
+  PinsProviderProps,
+  PinProps,
+  OverlayProps,
+  PinDetailsPopupProps,
+  FeedbackPinAppProps,
+  FeedbackFormProps
 } from './types';
 
-// Export CSS
+// Import CSS to be bundled
 import './styles/App.css';
 import './styles/LoadingOverlay.css';
