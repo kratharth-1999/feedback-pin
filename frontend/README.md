@@ -5,7 +5,7 @@ A React component for adding feedback pins to web pages, allowing users to provi
 ## Installation
 
 ```bash
-npm install kratharth-feedback-pin
+npm install k-feedback-pin
 ```
 
 ## Usage
@@ -14,8 +14,8 @@ npm install kratharth-feedback-pin
 
 ```tsx
 import React from 'react';
-import { FeedbackPin } from 'kratharth-feedback-pin';
-import 'kratharth-feedback-pin/dist/index.css'; // Import the CSS
+import { FeedbackPin } from 'k-feedback-pin';
+import 'k-feedback-pin/dist/index.css'; // Import the CSS
 
 function App() {
   return (
@@ -33,8 +33,8 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { FeedbackPin, FeedbackPinAppProps } from 'kratharth-feedback-pin';
-import 'kratharth-feedback-pin/dist/index.css';
+import { FeedbackPin, FeedbackPinAppProps } from 'k-feedback-pin';
+import 'k-feedback-pin/dist/index.css';
 
 function App() {
   return (
@@ -58,7 +58,7 @@ export default App;
 **You must import the CSS file for the component to display correctly:**
 
 ```tsx
-import 'kratharth-feedback-pin/dist/index.css';
+import 'k-feedback-pin/dist/index.css';
 ```
 
 Without this import, the feedback pins and controls will not have proper styling.

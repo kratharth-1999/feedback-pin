@@ -1,5 +1,5 @@
 {
-  "name": "kratharth-feedback-pin",
+  "name": "k-feedback-pin",
   "private": false,
   "version": "1.0.0",
   "description": "A React component for adding feedback pins to web pages",
