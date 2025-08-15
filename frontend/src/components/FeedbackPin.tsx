@@ -51,7 +51,7 @@ const FeedbackPinContent: React.FC<{
     }, [pins, removeAllPinsByPath]);
 
     return (
-        <div className="feedback-pin-app" style={{cursor: isActive ? "crosshair" : "auto"}}>
+        <div className="feedback-pin-app">
             <button
                 className={`feedback-control-btn feedback-pin-main-btn ${
                     !showControls ? "collapsed" : ""

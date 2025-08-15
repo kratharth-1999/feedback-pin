@@ -111,7 +111,11 @@ const Overlay: React.FC<OverlayProps> = ({ isActive, showPins }) => {
     }, []);
 
     return (
-        <div className="overlay" onClick={handleOverlayClick}>
+        <div 
+            className="overlay" 
+            onClick={handleOverlayClick}
+            style={{ cursor: isActive ? "pointer" : "auto" }}
+        >
             {showPins &&
                 pins
                     .filter((pin) => pin.path === window.location.href)
