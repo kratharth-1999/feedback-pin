@@ -113,6 +113,7 @@ const Overlay: React.FC<OverlayProps> = ({ isActive, showPins }) => {
     return (
         <div 
             className="overlay" 
+            data-testid="overlay"
             onClick={handleOverlayClick}
             style={{ cursor: isActive ? "pointer" : "auto" }}
         >
@@ -127,6 +128,7 @@ const Overlay: React.FC<OverlayProps> = ({ isActive, showPins }) => {
             {showFeedbackForm && clickPosition && (
                 <div
                     className="potential-pin"
+                    data-testid="potential-pin"
                     style={{
                         position: "fixed", // Use fixed positioning for the indicator
                         left: `${clickPosition.x}px`,
@@ -155,4 +157,7 @@ const Overlay: React.FC<OverlayProps> = ({ isActive, showPins }) => {
     );
 };
 
-export default React.memo(Overlay);
+const MemoizedOverlay = React.memo(Overlay);
+MemoizedOverlay.displayName = 'Overlay';
+
+export default MemoizedOverlay;

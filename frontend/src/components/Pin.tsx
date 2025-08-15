@@ -41,8 +41,18 @@ const Pin = React.memo(({ pin, onClick }: PinProps) => {
             className="pin"
             style={{ left: `${adjustedX}px`, top: `${adjustedY}px` }}
             onClick={() => onClick(pin)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onClick(pin);
+                }
+            }}
         />
     );
 });
+
+Pin.displayName = 'Pin';
 
 export default Pin;

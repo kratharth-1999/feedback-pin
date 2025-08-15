@@ -31,6 +31,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
     return (
         <div
             className="feedback-form"
+            data-testid="feedback-form"
             ref={formRef}
             style={{
                 position: "fixed",
@@ -38,7 +39,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
                 top: `${adjustedPosition.y}px`,
             }}
         >
-            <form onSubmit={handleSubmit} className="feedback-form-content">
+            <form onSubmit={handleSubmit} className="feedback-form-content" role="form">
                 <h3>Add Feedback</h3>
                 <textarea
                     value={feedback}
@@ -61,4 +62,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
     );
 };
 
-export default React.memo(FeedbackForm);
+const MemoizedFeedbackForm = React.memo(FeedbackForm);
+MemoizedFeedbackForm.displayName = 'FeedbackForm';
+
+export default MemoizedFeedbackForm;

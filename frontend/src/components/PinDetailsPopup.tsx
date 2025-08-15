@@ -47,6 +47,8 @@ const PinDetailsPopup: React.FC<PinDetailsPopupProps> = ({
         <div
             className="pin-details"
             ref={popupRef}
+            role="dialog"
+            aria-labelledby="pin-details-title"
             style={{
                 position: "fixed", // Changed from absolute to fixed
                 left: `${adjustedPosition.x}px`,
@@ -54,7 +56,7 @@ const PinDetailsPopup: React.FC<PinDetailsPopupProps> = ({
             }}
         >
             <div className="pin-details-header">
-                <h3>Pin Details</h3>
+                <h3 id="pin-details-title">Pin Details</h3>
                 <button className="close-button" onClick={onClose}>
                     ×
                 </button>
@@ -84,6 +86,7 @@ const PinDetailsPopup: React.FC<PinDetailsPopupProps> = ({
                         <button
                             onClick={handleSaveEdit}
                             disabled={
+                                !onUpdate ||
                                 !editedFeedback.trim() ||
                                 editedFeedback === pin.feedback
                             }
@@ -102,4 +105,7 @@ const PinDetailsPopup: React.FC<PinDetailsPopupProps> = ({
     );
 };
 
-export default React.memo(PinDetailsPopup);
+const MemoizedPinDetailsPopup = React.memo(PinDetailsPopup);
+MemoizedPinDetailsPopup.displayName = 'PinDetailsPopup';
+
+export default MemoizedPinDetailsPopup;

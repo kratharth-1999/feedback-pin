@@ -11,7 +11,7 @@ const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ isLoading }) => {
     if (!isLoading) return null;
 
     return (
-        <div className="loading-overlay">
+        <div className="loading-overlay" data-testid="loading-overlay">
             <div className="loading-container">
                 <ClipLoader color="#3498db" size={50} />
                 <p className="loading-text">Loading...</p>
@@ -20,4 +20,7 @@ const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ isLoading }) => {
     );
 };
 
-export default React.memo(LoadingOverlay);
+const MemoizedLoadingOverlay = React.memo(LoadingOverlay);
+MemoizedLoadingOverlay.displayName = 'LoadingOverlay';
+
+export default MemoizedLoadingOverlay;
